@@ -3,10 +3,12 @@ import Notes from 'reveal.js/plugin/notes/notes.esm.js';
 import 'reveal.js/dist/reveal.css';
 import './styles/theme.css';
 import { presentationConfig } from './config.js';
+import { installTextTransitions } from './text-transitions.js';
 
 async function initializePresentation() {
   const deck = new Reveal(document.querySelector('.reveal'), { ...presentationConfig, plugins: [Notes] });
   await deck.initialize();
+  installTextTransitions(deck);
   const updateChapter = () => {
     document.querySelector('#chapter').textContent = deck.getCurrentSlide().dataset.chapter;
   };
