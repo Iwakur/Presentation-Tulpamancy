@@ -1,0 +1,49 @@
+name: Build presentation
+
+on:
+  push:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: presentation-build-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: '22'
+          cache: npm
+
+      - name: Install locked dependencies
+        run: npm ci
+
+      - name: Build presentation and references
+        run: npm run build
+
+      - name: Check deployment files
+        run: |
+          test -s dist/index.html
+          test -s dist/references.html
+          test -s dist/lucide-license.txt
+          test -d dist/assets
+
+      - name: Upload ready-to-serve website
+        uses: actions/upload-artifact@v7
+        with:
+          name: tulpamancy-dist
+          path: dist/
+          if-no-files-found: error
+          retention-days: 30

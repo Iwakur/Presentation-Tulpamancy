@@ -19,6 +19,69 @@ npm run preview
 
 Open the URL Vite prints. The build produces a static `dist/` containing both the deck and references page. Upload the entire directory. Serve it over HTTP rather than opening files with `file://`; modules and the speaker window need an HTTP origin. Fonts are system fonts; illustrations are inline SVG. Presenting a locally served build needs no internet. External reading links require internet; there is no automatic offline cache.
 
+## Build on GitHub and copy to an Ubuntu VPS
+
+`.github/workflows/build.yml` runs on every push to any branch and can also be started from **Actions → Build presentation → Run workflow** once the workflow is on the repository’s default branch. It uses Node.js 22, installs the lockfile with `npm ci`, runs Vite’s production build, checks both HTML pages and the local icon license, then uploads a **tulpamancy-dist** artifact retained for 30 days. Push this workflow along with your presentation changes to activate it. No repository secrets or VPS credentials are needed. A failed build does not upload an artifact. The workflow builds the website; copying it to the VPS remains a manual step.
+
+1. Push your changes to GitHub.
+2. Open the repository’s **Actions → Build presentation** and choose the successful run for the commit/branch you want.
+3. Under **Artifacts**, download **tulpamancy-dist**. You must be signed into GitHub with access to the repository. GitHub downloads a ZIP whose root contains `index.html`, `references.html`, `assets/` and `lucide-license.txt`—there is no extra `dist/` wrapper. This is the complete built website; the VPS needs no Node.js, npm or source checkout.
+4. From the directory containing the downloaded ZIP on your computer, copy it to the VPS. Replace the user and IP:
+
+```sh
+scp tulpamancy-dist.zip YOUR_USER@YOUR_VPS_IP:~/
+```
+
+On the Ubuntu VPS, extract the website into the public directory:
+
+```sh
+sudo apt update
+sudo apt install unzip
+sudo mkdir -p /var/www/tulpamancy
+sudo unzip -o ~/tulpamancy-dist.zip -d /var/www/tulpamancy
+sudo chmod -R a+rX /var/www/tulpamancy
+```
+
+You can instead unzip the artifact locally into a `dist/` folder and transfer its **entire contents**. The important file is `/var/www/tulpamancy/index.html`, not `/var/www/tulpamancy/dist/index.html`.
+
+### Serve with Caddy
+
+Caddy serves the finished static files. It is a VPS hosting tool, not a new presentation dependency. Reveal.js still supplies the slide engine in the browser, and Vite runs only during the build.
+
+If Caddy is not already installed, follow its [official Ubuntu package instructions](https://caddyserver.com/docs/install#debian-ubuntu-raspbian). For a fresh Ubuntu installation:
+
+```sh
+sudo apt install --yes debian-keyring debian-archive-keyring apt-transport-https curl gnupg
+curl -1sLf 'https://dl.cloudsmith.io/public/caddy/stable/gpg.key' | sudo gpg --dearmor -o /usr/share/keyrings/caddy-stable-archive-keyring.gpg
+curl -1sLf 'https://dl.cloudsmith.io/public/caddy/stable/debian.deb.txt' | sudo tee /etc/apt/sources.list.d/caddy-stable.list
+sudo chmod o+r /usr/share/keyrings/caddy-stable-archive-keyring.gpg
+sudo chmod o+r /etc/apt/sources.list.d/caddy-stable.list
+sudo apt update
+sudo apt install caddy
+```
+
+Edit `/etc/caddy/Caddyfile` with `sudo nano /etc/caddy/Caddyfile`. On a fresh install, replace the default example site with this block. If you already host other sites, keep their blocks and add this as a separate site on an available port. A copy is provided in `deploy/Caddyfile`:
+
+```caddyfile
+:8080 {
+    root * /var/www/tulpamancy
+    encode zstd gzip
+    file_server
+}
+```
+
+Validate and start/reload the system service:
+
+```sh
+sudo caddy validate --config /etc/caddy/Caddyfile
+sudo systemctl enable --now caddy
+sudo systemctl reload caddy
+```
+
+Allow **TCP port 8080** in your VPS provider’s firewall. If UFW is active, allow it there too with `sudo ufw allow 8080/tcp`. Open **`http://YOUR_VPS_IP:8080`**. This example uses HTTP on a dedicated port and needs no domain; Caddy’s service keeps serving after SSH disconnects. For a domain with HTTPS, point its DNS to the VPS, replace `:8080` with the hostname and allow ports 80/443, following [Caddy’s HTTPS guide](https://caddyserver.com/docs/quick-starts/https).
+
+For future updates, download the artifact from the new successful run and repeat the copy/extract commands. Caddy reads the updated files without a restart; reload the browser. Reload Caddy only after changing its configuration. Build artifacts are temporary downloads, not GitHub releases or automatically committed `dist/` files. See [GitHub’s artifact documentation](https://docs.github.com/en/actions/tutorials/store-and-share-data) and [Caddy’s static-file guide](https://caddyserver.com/docs/quick-starts/static-files).
+
 ## Present and export
 
 - **Arrows / Space**: navigate; **Shift+Space**: back. Slides 03, 04 and 05 each have three fragment advances for the self-talk forms and history beats; slide 07 has four advances for the reported process, slide 08 has one advance for community terms, slide 09 has four advances for its practice comparison, slide 10 has five advances for evidence, limits and research methods, slide 11 has five advances starting with its experience map, and slide 12 has two more for identity and consciousness.
@@ -55,6 +118,8 @@ The browser controls fullscreen permission. If the custom fullscreen button is b
 | `src/styles/theme.css` | Custom colours, typography, layout recipes, SVG animation, toolbar, bibliography and print rules. |
 | `public/lucide-license.txt` | Upstream Lucide/Feather license notices for the inline history/process icons; Vite copies this static file into the build. |
 | `vite.config.js` | Vite development/build settings; both HTML pages are build entries and asset URLs use a relative base. |
+| `.github/workflows/build.yml` | GitHub-hosted build on push, dependency caching and downloadable ready-to-serve artifact; no automatic VPS deployment. |
+| `deploy/Caddyfile` | Copyable VPS hosting example: serve `/var/www/tulpamancy` on HTTP port 8080 with Caddy. |
 | Reveal.js | Slide navigation/scaling, fragments, overview, progress, slide numbers, keyboard shortcuts, fades and print pagination. Its Notes plugin supplies presenter view and timer. |
 | Browser | HTML/CSS Grid/Flexbox, SVG, CSS animation, Range text measurement, Web Animations API, media queries, new tabs, fullscreen and printing. |
 | Project custom code | All layouts in the catalogue, theme, conceptual drawings, animation keyframes, footer toolbar and buttons that invoke Reveal/browser APIs. |
