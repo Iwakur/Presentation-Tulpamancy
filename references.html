@@ -2,15 +2,17 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
+<meta name="color-scheme" content="dark">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="Tulpamancy, religious experience and consciousness. A presentation by Ryzhkin Hlib.">
-<title>Tulpamancy — References &amp; Evidence Limits</title>
+<title>Tulpamancy — References, Evidence Limits &amp; Credits</title>
 <link rel="stylesheet" href="/src/styles/theme.css">
 </head>
 <body class="references-page">
 <main class="reference-document"><a href="./index.html#/12">← Back to conclusion</a>
   <p class="eyebrow">PRESENTATION BIBLIOGRAPHY</p>
   <h1>References &amp; evidence limits</h1>
+  <nav class="reference-nav" aria-label="Page sections"><a href="#S1">Research &amp; historical sources</a><a href="#technology">Technology &amp; credits</a></nav>
   <p>Source details and scope notes from the presentation script. Reports, proposed mechanisms and consciousness claims are different levels of evidence.</p>
   <ol class="reference-list">
     <li id="S1"><span class="label">[S1]</span>
@@ -77,4 +79,20 @@
       </div>
     </li>
   </ol>
+
+  <section id="technology" class="technology-credits" aria-labelledby="technology-heading">
+    <p class="eyebrow">HOW THE PRESENTATION WAS BUILT</p>
+    <h2 id="technology-heading">Technology &amp; credits</h2>
+    <p>These tools build and present the deck. They are separate from the research sources above.</p>
+    <dl>
+      <div><dt>HTML &amp; SVG</dt><dd>Editable slides and speaker scripts in <code>index.html</code>, with inline vector illustrations. This references page is a separate HTML document.</dd></div>
+      <div><dt>CSS &amp; browser animation</dt><dd>Custom layouts, colours and typography; reversible fragment transitions, SVG line drawing and decorative loops. The browser’s Web Animations API animates matching heading characters. No additional animation engine is used.</dd></div>
+      <div><dt>JavaScript</dt><dd>Custom initialization, title transitions, motion controls and toolbar actions. Presentation configuration stays separate from slide content.</dd></div>
+      <div><dt><a href="https://revealjs.com/" target="_blank" rel="noopener">Reveal.js ↗</a></dt><dd>Slide navigation and scaling, fragments, overview, slide numbers, opening-surface Auto-Animate and PDF pagination. Its Notes plugin supplies the speaker view and timer; the browser produces the final PDF.</dd></div>
+      <div><dt><a href="https://vite.dev/" target="_blank" rel="noopener">Vite ↗</a></dt><dd>Local development server and production bundling for the deck and this page. It does not implement the presentation’s layouts or animations.</dd></div>
+      <div><dt><a href="https://lucide.dev/" target="_blank" rel="noopener">Lucide ↗</a></dt><dd>Selected line icons are embedded locally as SVG. <a href="./lucide-license.txt" target="_blank" rel="noopener">Lucide / Feather license notices ↗</a> are included in the distributed deck. Other diagrams are custom SVG, HTML and CSS.</dd></div>
+      <div><dt>Fonts &amp; delivery</dt><dd>System serif and sans-serif fonts, with no remote font request. The built deck is static; it needs no internet for presenting when served locally. External reading links need an internet connection.</dd></div>
+    </dl>
+    <a href="./index.html#/12">← Back to conclusion</a>
+  </section>
 </main></body></html>

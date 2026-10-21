@@ -9,11 +9,6 @@ async function initializePresentation() {
   const deck = new Reveal(document.querySelector('.reveal'), { ...presentationConfig, plugins: [Notes] });
   await deck.initialize();
   installTextTransitions(deck);
-  const updateChapter = () => {
-    document.querySelector('#chapter').textContent = deck.getCurrentSlide().dataset.chapter;
-  };
-  deck.on('slidechanged', updateChapter);
-  updateChapter();
   const motionButton = document.querySelector('#motion');
   motionButton.onclick = () => {
     const paused = document.body.classList.toggle('motion-paused');

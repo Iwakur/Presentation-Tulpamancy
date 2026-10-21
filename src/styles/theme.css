@@ -6,7 +6,7 @@
   --gold: #d0b88e;
   --sage: #9bbfb0;
   --line: #394441;
-  color-scheme: dark;
+  color-scheme: only dark;
   font-family: Arial, Helvetica, sans-serif;
 }
 * { box-sizing: border-box; }
@@ -23,8 +23,8 @@ button:focus-visible, a:focus-visible { outline: 2px solid var(--gold); outline-
 .deck-header a { text-decoration: none; }
 .deck-header a span { color: var(--gold); padding: 0 12px; }
 .deck-footer { bottom: 22px; gap: 18px; }
-.toolbar { display: flex; align-items: center; gap: 18px; margin-right: 100px; }
-.toolbar button, .toolbar a { border: 0; background: none; color: var(--muted); font: 11px Arial; padding: 8px 0; cursor: pointer; text-decoration: none; white-space: nowrap; }
+.toolbar { display: flex; justify-content: flex-end; align-items: center; gap: 18px; margin-left: auto; margin-right: 100px; }
+.toolbar button, .toolbar a { border: 0; background: none; color: var(--muted); font: 13px Arial; padding: 8px 0; cursor: pointer; text-decoration: none; white-space: nowrap; }
 .toolbar button:hover, .toolbar a:hover { color: var(--gold); }
 .reveal { color: var(--ink); font-size: 28px; }
 .reveal .slides { text-align: left; }
@@ -79,13 +79,6 @@ button:focus-visible, a:focus-visible { outline: 2px solid var(--gold); outline-
   42%, 64% { opacity: 1; transform: scale(1); }
   88%, 100% { opacity: 0; transform: scale(1.08); }
 }
-.closing .inner-presence { animation: none; opacity: 1; }
-.closing .unresolved { display: block; }
-.closing .mind-art { max-height: 440px; }
-.reveal .closing-lines { margin-top: 30px; font-size: 29px; }
-.reveal .closing-lines p { line-height: 1.6; }
-.reveal .audience-question { margin-top: 30px; padding-top: 20px; border-top: 1px solid var(--gold); font: 33px/1.3 Georgia, serif; color: var(--gold); }
-.reveal .selected-sources { font-size: 14px; color: var(--muted); margin-top: 24px; max-width: 1300px; }
 .route-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
 .reveal .cues { margin: 24px 0 0; padding-left: 25px; font-size: 28px; line-height: 1.6; }
 .cues li { margin-bottom: 15px; }
@@ -103,21 +96,17 @@ button:focus-visible, a:focus-visible { outline: 2px solid var(--gold); outline-
 .sequence article:not(:last-child)::after { content: '→'; position: absolute; right: -25px; top: -18px; color: var(--gold); font-size: 23px; }
 .sequence h3 { margin-bottom: 17px; }
 .sequence p, .tiles p, .parallels p { color: var(--muted); font-size: 23px; }
-.community-network { display: block; width: 100%; height: 70px; fill: var(--sage); stroke: var(--sage); stroke-width: 1; margin-bottom: 15px; }
 .sequence.process { grid-template-columns: repeat(4, 1fr); margin-top: 80px; }
 .process article:last-child { border-top-style: dashed; }
 .process article:nth-last-child(2)::after { content: '⇢'; }
-.reveal .support { margin-top: 35px; color: var(--muted); font-size: 24px; }
+.reveal .support { margin-top: 100px; color: var(--muted); font-size: 24px; }
 .reveal .takeaway { position: absolute; bottom: 98px; left: 80px; right: 80px; border-top: 1px solid var(--line); padding-top: 21px; color: var(--gold); font-size: 25px; }
 .reveal .citations { position: absolute; bottom: 49px; left: 80px; right: 80px; font-size: 13px; color: var(--muted); }
 .citations a { text-decoration: none; }
 .citations a:hover { color: var(--gold); }
-.definition-layout { margin-top: 30px; grid-template-columns: 1.35fr 1fr; }
+.definition-layout { margin-top: 20px; grid-template-columns: 1fr 1.15fr; gap: 36px; }
 .reveal .relationship { font-size: 31px; }
 .reveal .muted { color: var(--muted); font-size: 24px; margin-top: 12px; }
-.identity-art { width: 100%; height: 330px; fill: none; stroke: var(--gold); stroke-width: 1.6; }
-.identity-art .speech-two { stroke: var(--sage); }
-.identity-art .dotted { stroke: var(--muted); stroke-dasharray: 2 7; }
 .tiles { display: grid; grid-template-columns: repeat(4, 1fr); gap: 22px; margin-top: 50px; }
 .tiles article { padding: 25px; border: 1px solid var(--line); background: var(--panel); }
 .tiles h3 { margin: 20px 0 12px; }
@@ -136,17 +125,14 @@ button:focus-visible, a:focus-visible { outline: 2px solid var(--gold); outline-
 .bands p { color: var(--muted); font-size: 22px; }
 .bands .open-question { border-style: dashed; }
 .risk-layout { display: grid; grid-template-columns: 1.2fr 1fr; gap: 50px; margin-top: 45px; align-items: center; }
-.branches { text-align: center; padding: 30px 20px; border: 1px solid var(--line); }
-.branches > p:first-child { font: 36px Georgia; }
-.branches > span { display: block; color: var(--gold); margin: 25px 0; font-size: 44px; }
-.branches > div { display: flex; justify-content: space-between; gap: 16px; font-size: 22px; }
 .reveal .small { color: var(--muted); font-size: 18px; margin-top: 32px; }
-.staircase { display: grid; grid-template-columns: repeat(3, 1fr); align-items: end; margin-top: 48px; }
-.staircase article { padding: 28px; height: 205px; background: var(--panel); border-top: 2px solid var(--gold); }
-.staircase article:nth-child(2) { height: 255px; }
-.staircase article:nth-child(3) { height: 305px; border-top-style: dashed; }
+.staircase { --stair-gap: 18px; gap: var(--stair-gap); display: grid; grid-template-columns: repeat(3, 1fr); align-items: end; margin-top: 48px; }
+.staircase article { padding: 28px; height: 330px; background: var(--panel); border-top: 2px solid var(--gold); }
+.staircase article:nth-child(2) { height: 390px; }
+.staircase article:nth-child(3) { height: 450px; border-top-style: dashed; }
 .staircase h3 { font: 32px/1.2 Georgia; margin-bottom: 18px; }
-.staircase p { color: var(--muted); font-size: 22px; }
+.staircase p { color: var(--muted); font-size: 23px; line-height: 1.45; }
+.staircase p + p { margin-top: 18px; }
 .reveal .progress { height: 2px; color: var(--gold); }
 .reveal .controls { color: var(--gold); bottom: 10px; right: 15px; font-size: 7px; }
 .reveal .slide-number { background: none; color: var(--muted); font: 11px Arial; bottom: 26px; right: 85px; }
@@ -165,13 +151,11 @@ button:focus-visible, a:focus-visible { outline: 2px solid var(--gold); outline-
   .deck-header { font-size: 8px; top: 14px; }
   .deck-header > span { display: none; }
   .deck-footer { font-size: 8px; bottom: 12px; }
-  .deck-footer > span { max-width: 24%; }
   .toolbar { gap: 12px; margin-right: 80px; }
   .toolbar button, .toolbar a { font-size: 9px; }
   .reveal .slide-number { bottom: 16px; }
 }
 @media (max-width: 600px) {
-  .deck-footer > span { display: none; }
   .toolbar { gap: 10px; }
   .reference-document { padding: 25px 18px; }
   .reference-list li { grid-template-columns: 40px 1fr; gap: 8px; }
@@ -191,11 +175,11 @@ button:focus-visible, a:focus-visible { outline: 2px solid var(--gold); outline-
 
 /* Self-talk forms are related concepts, not sequential stages. */
 .self-talk article:not(:last-child)::after { content: none; }
-.sequence.self-talk { margin-top: 42px; align-items: start; gap: 30px; }
+.sequence.self-talk { margin-top: 32px; align-items: start; gap: 30px; }
 .self-talk article { min-height: 245px; padding: 24px 22px; background: linear-gradient(180deg, var(--panel), transparent); }
 .self-talk article { --step-offset: 0px; }
-.self-talk article:nth-child(2) { margin-top: 115px; --step-offset: 115px; }
-.self-talk article:nth-child(3) { margin-top: 230px; --step-offset: 230px; }
+.self-talk article:nth-child(2) { margin-top: 75px; --step-offset: 75px; }
+.self-talk article:nth-child(3) { margin-top: 150px; --step-offset: 150px; }
 .self-talk p { line-height: 1.5; }
 .reveal .self-talk article.fragment { border-top-color: transparent; transform: translateY(calc(-45px - var(--step-offset))); transition: transform .85s cubic-bezier(.22, 1, .36, 1), opacity .5s ease, visibility .85s; }
 .reveal .self-talk article.fragment.visible { transform: translateY(0); }
@@ -214,7 +198,8 @@ button:focus-visible, a:focus-visible { outline: 2px solid var(--gold); outline-
 .contents-panel > .label { margin-bottom: 16px; font-size: 11px; }
 .reveal .contents-panel .route { font-size: 25px; line-height: 1.7; padding-left: 35px; }
 .contents-panel .route li:last-child { border-bottom: 0; }
-[data-auto-animate="running"] .contents-panel .route li { animation: contents-arrive .45s both; animation-delay: calc(.65s + var(--row) * .045s); }
+.contents-panel .route li { opacity: 0; transform: translateY(12px); transition: opacity .3s ease, transform .3s ease; }
+.present .contents-panel .route li { opacity: 1; transform: none; transition-delay: calc(.65s + var(--row) * .045s); }
 .contents-panel .route li:nth-child(1) { --row: 0; }
 .contents-panel .route li:nth-child(2) { --row: 1; }
 .contents-panel .route li:nth-child(3) { --row: 2; }
@@ -226,7 +211,6 @@ button:focus-visible, a:focus-visible { outline: 2px solid var(--gold); outline-
 .contents-panel .route li:nth-child(9) { --row: 8; }
 .contents-panel .route li:nth-child(10) { --row: 9; }
 .contents-panel .route li:nth-child(11) { --row: 10; }
-@keyframes contents-arrive { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
 @media print { .contents-panel .route li { animation: none !important; } }
 
 .text-flight { position: fixed; inset: 0; z-index: 30; pointer-events: none; }
@@ -260,12 +244,321 @@ button:focus-visible, a:focus-visible { outline: 2px solid var(--gold); outline-
 .route .route-group-start:not(:first-child) { border-top: 2px solid var(--gold); }
 .route li:has(+ .route-group-start) { border-bottom-color: transparent; }
 
-/* Slide 04: the pointer follows the three spoken beats, not a chronology. */
+/* Slides 04–05: one pointer follows each slide’s three spoken beats. */
 .sequence.history-route { position: relative; margin-top: 100px; }
 .history-route article:not(:last-child)::after { content: none; }
+.reveal .history-route article.fragment { border-top-color: transparent; transform: translateX(-65px); transition: transform .85s cubic-bezier(.22, 1, .36, 1), opacity .55s ease, visibility .85s; }
+.reveal .history-route article.fragment.visible { transform: translateX(0); }
+.history-route article.fragment::before { content: ''; position: absolute; top: -1px; left: 0; right: 0; height: 2px; background: var(--gold); transform: scaleX(.05); transform-origin: left; transition: transform .7s cubic-bezier(.22, 1, .36, 1) .12s; }
+.history-route article.fragment.visible::before { transform: scaleX(1); }
+@media (prefers-reduced-motion: reduce), print {
+  .reveal .history-route article.fragment { transform: none; }
+  .history-route article.fragment::before { transform: none; }
+}
 .history-pointer { position: absolute; left: 0; right: 0; top: -42px; height: 24px; border-bottom: 1px solid var(--line); }
 .history-pointer span { position: absolute; left: 0; bottom: -16px; padding: 0 10px; background: var(--bg); color: var(--gold); font: 34px/1 Arial, sans-serif; opacity: 0; transform: translateX(-50%); transition: left .8s cubic-bezier(.22, 1, .36, 1), opacity .3s; }
 .history-route:has(article[data-fragment-index="0"].visible) .history-pointer span { left: 16.6667%; opacity: 1; }
 .history-route:has(article[data-fragment-index="1"].visible) .history-pointer span { left: 50%; }
 .history-route:has(article[data-fragment-index="2"].visible) .history-pointer span { left: 83.3333%; }
 @media print { .history-pointer { display: none; } }
+
+/* Slide 06: a conceptual relationship, with no anatomical claim. */
+.reveal .definition-cues { list-style: none; padding-left: 0; margin-top: 28px; font-size: 25px; }
+.definition-cues li { margin-bottom: 20px; line-height: 1.45; }
+.definition-cue-label { display: block; margin-bottom: 6px; color: var(--gold); font-size: 11px; letter-spacing: 1.8px; }
+.companion-art { color-scheme: only dark; forced-color-adjust: none; display: block; width: 100%; height: 480px; overflow: visible; }
+.companion-frame { fill: var(--panel); stroke: var(--line); stroke-width: 1; }
+.companion-caption { fill: var(--muted); font: 11px Arial, sans-serif; letter-spacing: 1.8px; }
+.companion-name { fill: var(--ink); font: 20px Georgia, serif; }
+.companion-track { fill: none; stroke: var(--line); stroke-width: 1; }
+.companion-flow { fill: none; stroke: var(--sage); stroke-width: 2; stroke-dasharray: 2 18; animation: companion-flow 9s linear infinite; }
+.companion-ring, .companion-halo { fill: none; stroke-width: 1; }
+.host-ring, .host-halo { stroke: var(--gold); }
+.tulpa-ring, .tulpa-halo { stroke: var(--sage); }
+.host-point { fill: var(--gold); }
+.tulpa-point { fill: var(--sage); }
+.companion-halo { opacity: .25; transform-box: fill-box; transform-origin: center; animation: companion-breathe 5s ease-in-out infinite; }
+.tulpa-halo { animation-delay: -2.5s; }
+.companion-art :is(.companion-flow, .companion-halo, .companion-signal, .companion-orbit) { animation-play-state: paused; }
+.present .companion-art :is(.companion-flow, .companion-halo, .companion-signal, .companion-orbit) { animation-play-state: running; }
+:is(.motion-paused, .reveal.overview) .companion-art :is(.companion-flow, .companion-halo, .companion-signal, .companion-orbit) { animation-play-state: paused; }
+@keyframes companion-flow { to { stroke-dashoffset: -200; } }
+@keyframes companion-breathe { 0%, 100% { transform: scale(.88); opacity: .15; } 50% { transform: scale(1.12); opacity: .45; } }
+@media print { .companion-art * { animation: none !important; } }
+
+.host-aura { fill: url(#host-aura); }
+.tulpa-aura { fill: url(#tulpa-aura); }
+.companion-ring { stroke-width: 1.5; }
+.companion-orbit { fill: none; stroke-width: 1; stroke-dasharray: 35 12 3 12; transform-box: fill-box; transform-origin: center; opacity: .55; animation: companion-orbit 24s linear infinite; }
+.companion-orbit.tulpa-ring { animation-direction: reverse; }
+.companion-signal { fill: none; stroke: url(#companion-light); stroke-width: 3; stroke-linecap: round; stroke-dasharray: 7 93; filter: drop-shadow(0 0 5px rgb(155 191 176 / 60%)); animation: companion-signal 6s linear infinite; }
+.companion-signal-echo { animation-delay: -3s; opacity: .5; stroke-width: 1.5; }
+@keyframes companion-signal { to { stroke-dashoffset: -100; } }
+@keyframes companion-orbit { to { transform: rotate(360deg); } }
+
+.history-icon { display: block; width: 52px; height: 52px; margin-bottom: 20px; color: var(--sage); }
+
+/* Reveal's PDF wrapper must retain the same canvas as the live deck. */
+html.reveal-print .reveal .slides section[data-timing] {
+  height: 900px !important;
+  padding: 92px 80px 86px !important;
+  print-color-adjust: exact;
+  -webkit-print-color-adjust: exact;
+}
+html.reveal-print .deck-header,
+html.reveal-print .deck-footer,
+html.reveal-print .text-flight,
+html.reveal-print .history-pointer { display: none !important; }
+html.reveal-print *,
+html.reveal-print *::before,
+html.reveal-print *::after { animation: none !important; transition: none !important; }
+html.reveal-print .reveal .fragment {
+  opacity: 1 !important;
+  visibility: visible !important;
+  transform: none !important;
+}
+html.reveal-print :is(.self-talk, .history-route) article.fragment::before { transform: none !important; }
+html.reveal-print .inner-presence { opacity: 1; transform: none; }
+html.reveal-print .reveal .text-flight-hidden { visibility: visible !important; }
+
+/* Reuse the timeline motion with four stops and a dotted reported outcome. */
+.history-route.process:has(article[data-fragment-index="0"].visible) .history-pointer span { left: 12.5%; }
+.history-route.process:has(article[data-fragment-index="1"].visible) .history-pointer span { left: 37.5%; }
+.history-route.process:has(article[data-fragment-index="2"].visible) .history-pointer span { left: 62.5%; }
+.history-route.process:has(article[data-fragment-index="3"].visible) .history-pointer span { left: 87.5%; }
+.history-route.process article:last-child::before { background: repeating-linear-gradient(to right, var(--gold) 0 5px, transparent 5px 10px); }
+
+.sequence.process.history-route { margin-top: 72px; }
+.reveal .process.history-route + .support { margin-top: 35px; }
+
+/* Slide 08: static visual cues for the reported experiences in the notes. */
+.experience-tiles { margin-top: 36px; }
+.experience-tiles article { padding: 18px 22px 22px; border-top-color: var(--sage); background: linear-gradient(160deg, #21302b, var(--panel) 75%); }
+.experience-art { display: block; width: 100%; height: 130px; stroke: var(--sage); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.experience-art .scene-frame { fill: #111a18; stroke: var(--line); }
+.experience-art .scene-light { fill: var(--gold); stroke: none; }
+.experience-art .scene-accent { stroke: var(--gold); }
+.experience-art .scene-host { fill: var(--gold); fill-opacity: .2; stroke: var(--gold); }
+.experience-art .scene-companion { fill: var(--sage); fill-opacity: .3; stroke: var(--sage); }
+.experience-tiles h3 { margin: 12px 0 8px; }
+.reveal .experience-question { margin-top: 24px; padding-left: 18px; border-left: 2px solid var(--gold); font-size: 24px; }
+.experience-question .label { margin-bottom: 5px; font-size: 11px; }
+.experience-question + .evidence-pair { margin-top: 22px; }
+
+/* Slide 08: reversible, overlapping left-to-right card drops. */
+.experience-tiles article:nth-child(1) { --drop-delay: 0.08s; }
+.experience-tiles article:nth-child(2) { --drop-delay: 0.22s; }
+.experience-tiles article:nth-child(3) { --drop-delay: 0.36s; }
+.experience-tiles article:nth-child(4) { --drop-delay: 0.50s; }
+.reveal .experience-tiles.fragment { opacity: 1; visibility: visible; transition: none; }
+.experience-tiles article { opacity: 0; transform: translateY(-170px); pointer-events: none; transition: opacity .4s ease, transform .6s cubic-bezier(.16, 1, .3, 1); transition-delay: calc(.5s - var(--drop-delay)); }
+.present .experience-tiles.visible article { opacity: 1; transform: none; pointer-events: auto; transition-duration: .5s, .85s; transition-delay: var(--drop-delay); }
+
+/* Slide 08 opens with the question; one Reveal advance introduces the vocabulary. */
+.experience-lens { display: grid; grid-template-columns: 1fr 260px 1fr; align-items: center; gap: 35px; margin-top: 32px; padding: 18px 0 22px; border-bottom: 1px solid var(--line); }
+.experience-lens .label { margin-bottom: 10px; }
+.experience-lens p { font-size: 26px; color: var(--ink); }
+.experience-gap { text-align: center; }
+.experience-gap > span { display: block; font: 64px/1 Georgia, serif; color: var(--gold); }
+.experience-gap small { display: block; margin-top: 10px; color: var(--muted); font-size: 18px; }
+.experience-lens + .experience-tiles { margin-top: 24px; }
+.experience-lens + .experience-tiles .experience-art { height: 140px; }
+.experience-lens + .experience-tiles h3 { font-size: 27px; }
+.experience-lens + .experience-tiles p { font-size: 21px; }
+.reveal .experience-tiles.fragment { transition: none; }
+
+/* Slide 08 illustration palette: opaque layers and restrained detail. */
+.experience-art { stroke-width: 1.7; }
+.experience-art .scene-window { stroke: #51655b; fill: none; }
+.experience-art .scene-fine { stroke: #71877b; stroke-width: 1.2; }
+.experience-art .land-sky { fill: #172522; stroke: none; }
+.experience-art .land-far { fill: #30473e; stroke: #71877b; }
+.experience-art .land-near { fill: #263b32; stroke: #5f7b6a; }
+.experience-art .land-water { fill: #537e76; stroke: #9bbfb0; }
+.experience-art .land-bank { fill: #1b2c25; stroke: #516c59; }
+.experience-art .scene-paper { fill: #24352f; stroke: #71877b; }
+.experience-art .scene-hand { fill: #2b3d34; stroke: var(--sage); }
+.experience-art .profile-host { fill: #2b2c24; stroke: #a08e6f; }
+.experience-art .profile-companion { fill: #20352e; stroke: #7d9e8e; }
+
+.experience-lens { margin-top: 24px; padding: 12px 0 16px; }
+.experience-lens .label { font-size: 12px; margin-bottom: 8px; }
+.experience-lens p { font-size: 23px; line-height: 1.35; }
+.experience-lens + .experience-tiles article { padding: 12px 18px 16px; }
+.reveal .experience-question { margin-top: 18px; }
+
+/* Slide 09: left practice, right practice, shared processes, then conclusion. */
+.practice-parallels { grid-template-columns: 1fr 260px 1fr; gap: 32px; margin-top: 36px; }
+.practice-parallels article { min-height: 320px; padding: 27px 18px 30px; background: radial-gradient(ellipse closest-side, transparent 42%, rgb(75 112 91 / 12%) 72%, rgb(75 112 91 / 32%) 100%); border-color: #617c6d; }
+.practice-parallels article:last-child { border-color: #958565; background: radial-gradient(ellipse closest-side, transparent 42%, rgb(134 111 67 / 12%) 72%, rgb(134 111 67 / 30%) 100%); }
+.practice-parallels article > .label { font-size: 11px; letter-spacing: 1.2px; margin-bottom: 14px; }
+.practice-icon { display: block; width: 64px; height: 64px; margin: 0 auto 16px; stroke: var(--sage); stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.practice-parallels article:last-child .practice-icon { stroke: var(--gold); }
+.practice-parallels h3 { font-size: 28px; margin-bottom: 14px; }
+.practice-parallels .shared { position: relative; border-block-color: #71877b; }
+.practice-parallels .shared::before, .practice-parallels .shared::after { content: ''; position: absolute; top: 50%; width: 32px; border-top: 1px dashed var(--sage); }
+.practice-parallels .shared::before { right: 100%; }
+.practice-parallels .shared::after { left: 100%; }
+.practice-parallels .shared .label { font-size: 11px; margin-bottom: 14px; }
+.practice-parallels .shared p { color: var(--ink); font-size: 25px; }
+.practice-link-caption { display: block; margin-top: 16px; font-size: 16px; color: var(--sage); }
+.reveal .practice-finish .support { margin-top: 28px; font-size: 25px; }
+.practice-finish .support .label { font-size: 11px; margin-bottom: 8px; }
+.reveal .practice-finish .takeaway { position: static; margin-top: 22px; padding-top: 16px; }
+
+/* Slide 10: distinguish observation, proposed explanations and open claims. */
+.science-bands { margin-top: 34px; gap: 14px; }
+.science-bands article { grid-template-columns: 190px 330px 1fr; gap: 28px; min-height: 100px; padding: 20px 26px; border: 0; border-left: 3px solid var(--sage); background: linear-gradient(90deg, #203029, #192020 75%); }
+.science-bands article:nth-child(2) { border-left-color: var(--gold); background: linear-gradient(90deg, #2a2b24, #192020 75%); }
+.science-bands .label { font-size: 11px; line-height: 1.6; letter-spacing: 1.4px; }
+.science-bands h3 { font-size: 28px; color: var(--ink); }
+.science-bands p { font-size: 23px; color: var(--ink); line-height: 1.4; }
+.science-bands p span { color: var(--muted); font-size: 19px; }
+.science-bands .open-question { border: 1px dashed #69756d; border-left: 3px solid #69756d; background: transparent; }
+.survey-example { display: flex; align-items: center; gap: 24px; margin-top: 25px; padding: 18px 0; border-block: 1px solid var(--line); }
+.survey-example .label { margin: 0; font-size: 11px; white-space: nowrap; }
+.survey-example p { font-size: 21px; }
+.survey-example strong { color: var(--sage); font-weight: 400; font-size: 30px; margin-right: 4px; }
+.survey-example p > span { font-size: 17px; color: var(--muted); }
+.survey-example .survey-limit { margin-left: auto; color: var(--gold); font-size: 18px; white-space: nowrap; }
+
+.science-methods { display: flex; align-items: baseline; gap: 24px; margin-top: 15px; }
+.science-methods .label { margin: 0; font-size: 11px; white-space: nowrap; }
+.science-methods p { font-size: 21px; color: var(--muted); }
+.science-methods p span { padding: 0 12px; color: var(--gold); }
+
+/* Slide 11: conditional ethical question, separate from reported outcomes. */
+.moral-question { margin-top: 26px; padding: 15px 20px; border-left: 2px solid var(--gold); background: #222820; }
+.moral-question .label { margin-bottom: 6px; font-size: 11px; }
+.moral-question > p { font-size: 27px; }
+.moral-question .moral-context { margin-top: 5px; font-size: 17px; color: var(--muted); }
+
+/* Slide 11: the opening experience map precedes the script-led concerns. */
+.risk-layout { grid-template-columns: 1fr 1.08fr; gap: 64px; margin-top: 32px; }
+.reveal .risk-cues { margin: 0; list-style: none; padding: 0; }
+.risk-cues li { padding: 7px 0 7px 18px; border-left: 2px solid var(--line); font-size: 25px; line-height: 1.35; }
+.risk-cues li + li { margin-top: 8px; }
+.risk-cues li span { display: block; margin-top: 4px; color: var(--muted); font-size: 20px; }
+.experience-map { position: relative; height: 350px; padding: 12px 0 0; text-align: center; }
+.experience-root { position: relative; z-index: 1; display: grid; place-items: center; width: 280px; height: 104px; padding: 18px 32px; margin: 0 auto; border: 1px solid var(--sage); border-radius: 50%; background: radial-gradient(ellipse, #2b4236, #19251f); font: 32px/1.2 Georgia, serif; box-shadow: 0 0 35px rgb(155 191 176 / 7%); }
+.experience-connections { position: absolute; top: 116px; left: 0; width: 100%; height: 70px; stroke: #718b7b; stroke-width: 1.5; }
+.experience-connections circle { fill: var(--gold); stroke: none; }
+.experience-domains { position: relative; z-index: 1; display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 70px; }
+.experience-domains > div { padding: 12px 10px 34px; border-top: 1px solid #718b7b; background: linear-gradient(#24342c, transparent); }
+.experience-domains p { font-size: 23px; line-height: 1.3; white-space: nowrap; }
+.experience-map .experience-map-limit { margin-top: 18px; font-size: 16px; color: var(--muted); }
+
+/* Reversible slide-09 shape experiment: remove this rule to restore ovals. */
+.practice-parallels article { border-radius: 20px; }
+
+/* Slide 11: cards retreat first, branches retract, then the root fades. */
+.experience-root { border-radius: 18px; }
+.reveal .experience-map.fragment { opacity: 1; visibility: visible; transform: none; transition: none; }
+.experience-map .experience-root,
+.experience-map .experience-map-limit { opacity: 0; transform: translateY(-8px); transition: opacity .2s ease .75s, transform .2s ease .75s; }
+.present .experience-map.visible .experience-root,
+.present .experience-map.visible .experience-map-limit { opacity: 1; transform: none; transition-delay: 0s; }
+.experience-connections path { stroke-dasharray: 1; stroke-dashoffset: 1; transition: stroke-dashoffset .55s cubic-bezier(.22, .61, .36, 1) .2s; }
+.experience-connections .experience-stem { transition-duration: .2s; transition-delay: .75s; }
+.present .experience-map.visible .experience-connections path { stroke-dashoffset: 0; transition-delay: .25s; }
+.present .experience-map.visible .experience-connections .experience-stem { transition-delay: .05s; }
+.experience-connections circle { opacity: 0; transition: opacity .15s ease .75s; }
+.present .experience-map.visible .experience-connections circle { opacity: 1; transition-delay: .2s; }
+.experience-domains > div { opacity: 0; transform: translateY(-8px); transition: opacity .2s ease, transform .2s ease; }
+.present .experience-map.visible .experience-domains > div { opacity: 1; transform: none; transition: opacity .35s ease .5s, transform .35s cubic-bezier(.22, .61, .36, 1) .5s; }
+
+/* Slide 12: reversible rectangle copy and extension between fragment states. */
+.reveal .staircase article.fragment { position: relative; background: transparent; border-top-color: transparent; opacity: 1; visibility: visible; transition: none; }
+.staircase article.fragment:nth-child(2) { --previous-height: 330px; }
+.staircase article.fragment:nth-child(3) { --previous-height: 390px; }
+.staircase article.fragment::before { content: ''; position: absolute; inset: auto 0 0; height: var(--previous-height); box-sizing: border-box; background: var(--panel); border-top: 2px solid var(--gold); pointer-events: none; transform: translateX(calc(-100% - var(--stair-gap))); opacity: 0; transition: height 0.4s ease, transform 0.5s cubic-bezier(.22, .61, .36, 1) 0.4s, opacity 0.12s linear 0.78s; }
+.staircase article.fragment:nth-child(3)::before { border-top-style: dashed; }
+.staircase article.fragment > * { position: relative; z-index: 1; opacity: 0; transform: translateY(6px); transition: opacity 0.2s ease, transform 0.2s ease; }
+.present .staircase article.fragment.visible::before { height: 100%; transform: translateX(0); opacity: 1; transition: transform 0.5s cubic-bezier(.22, .61, .36, 1), height 0.4s ease 0.5s, opacity 0.12s linear; }
+.present .staircase article.fragment.visible > * { opacity: 1; transform: none; transition: opacity 0.35s ease 0.55s, transform 0.35s ease 0.55s; }
+.motion-paused .staircase article.fragment::before,
+.motion-paused .staircase article.fragment > * { transition: none !important; }
+.reveal.overview .staircase article.fragment::before { height: 100%; transform: none; opacity: 1; transition: none; }
+.reveal.overview .staircase article.fragment > * { opacity: 1; transform: none; transition: none; }
+html.reveal-print .staircase article.fragment { background: var(--panel); border-top-color: var(--gold); }
+html.reveal-print .staircase article.fragment::before { display: none; }
+html.reveal-print .staircase article.fragment > * { opacity: 1; transform: none; }
+@media print {
+  .reveal .staircase article.fragment { background: var(--panel); border-top-color: var(--gold); }
+  .staircase article.fragment::before { display: none; }
+  .staircase article.fragment > * { opacity: 1; transform: none; }
+}
+
+/* Let ordinary fragment exits finish before hiding their boxes. */
+.reveal .slides .fragment { transition: opacity .3s ease, transform .45s ease, visibility 0s linear .45s; }
+.reveal .slides .fragment.visible { visibility: visible; transition-delay: 0s; }
+/* Custom shells stay available while their children animate backwards. */
+.reveal :is(.experience-tiles, .experience-map).fragment,
+.reveal .staircase article.fragment { opacity: 1; visibility: hidden; pointer-events: none; transition: visibility 0s linear 1.05s; }
+.reveal :is(.experience-tiles, .experience-map).fragment.visible,
+.reveal .staircase article.fragment.visible { visibility: visible; pointer-events: auto; transition-delay: 0s; }
+.reveal.overview :is(.experience-tiles, .experience-map).fragment,
+.reveal.overview .staircase article.fragment { visibility: visible; transition: none; }
+
+/* Skip finite transitions with the motion control; looping artwork still pauses. */
+.motion-paused .reveal .fragment,
+.motion-paused .reveal .fragment *,
+.motion-paused .reveal .fragment::before,
+.motion-paused .reveal .fragment::after,
+.motion-paused .contents-panel .route li,
+.motion-paused .history-pointer span { transition: none !important; }
+
+/* Overview and export always show complete compositions. */
+.reveal.overview .contents-panel .route li,
+.reveal.overview .experience-tiles article,
+.reveal.overview .experience-map .experience-root,
+.reveal.overview .experience-map .experience-map-limit,
+.reveal.overview .experience-connections circle,
+.reveal.overview .experience-domains > div { opacity: 1; transform: none; transition: none; }
+.reveal.overview .experience-connections path { stroke-dashoffset: 0; transition: none; }
+html.reveal-print .contents-panel .route li,
+html.reveal-print .experience-tiles article,
+html.reveal-print .experience-map .experience-root,
+html.reveal-print .experience-map .experience-map-limit,
+html.reveal-print .experience-connections circle,
+html.reveal-print .experience-domains > div { opacity: 1; transform: none; }
+html.reveal-print .experience-connections path { stroke-dashoffset: 0; }
+@media print {
+  .contents-panel .route li, .experience-tiles article,
+  .experience-map .experience-root, .experience-map .experience-map-limit,
+  .experience-connections circle, .experience-domains > div { opacity: 1; transform: none; }
+  .experience-connections path { stroke-dashoffset: 0; }
+}
+
+.staircase .logic { color: var(--gold); }
+
+.reveal .staircase .recall-list { display: grid; gap: 16px; margin: 24px 0 0; padding-left: 24px; list-style: disc; color: var(--muted); font-size: 27px; line-height: 1.4; }
+.staircase .recall-list li::marker { color: var(--gold); font-size: .7em; }
+
+/* Slide 13: a personal conclusion, then a hypothetical for discussion. */
+.reveal .conclusion-summary { margin-top: 14px; font-size: 25px; color: var(--muted); }
+.conclusion-balance { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 28px; }
+.conclusion-balance article { padding: 18px 24px 20px; border-top: 2px solid var(--sage); background: linear-gradient(#203029, transparent); }
+.conclusion-balance article:last-child { border-top-color: var(--gold); background: linear-gradient(#2c2c23, transparent); }
+.conclusion-balance .label { font-size: 11px; margin-bottom: 8px; }
+.conclusion-balance h3 { font-size: 30px; }
+.reveal .conclusion-balance ul { margin: 14px 0 0; padding-left: 22px; font-size: 25px; line-height: 1.5; }
+.conclusion-balance li::marker { color: var(--sage); }
+.conclusion-balance article:last-child li::marker { color: var(--gold); }
+.conclusion-question { margin-top: 24px; padding: 18px 24px; border-left: 2px solid var(--gold); background: #1c2520; }
+.conclusion-question .label { font-size: 11px; margin-bottom: 8px; }
+.conclusion-question p { font: 31px/1.3 Georgia, serif; }
+.conclusion-credits { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 18px; }
+.conclusion-credits p { color: var(--muted); font-size: 14px; line-height: 1.6; }
+.conclusion-credits .label { font-size: 10px; margin-bottom: 3px; }
+.conclusion-credits a { text-underline-offset: 3px; }
+.reference-nav { display: flex; flex-wrap: wrap; gap: 18px; margin: 24px 0; }
+.technology-credits { margin-top: 50px; padding-top: 32px; border-top: 1px solid var(--line); scroll-margin-top: 24px; }
+.technology-credits > h2 { font: 32px Georgia, serif; margin-bottom: 18px; }
+.technology-credits dl { margin: 28px 0; }
+.technology-credits dl > div { display: grid; grid-template-columns: 230px 1fr; gap: 28px; padding: 20px 0; border-top: 1px solid var(--line); }
+.technology-credits dt { color: var(--gold); }
+.technology-credits dd { margin: 0; color: var(--muted); line-height: 1.6; }
+@media (max-width: 650px) {
+  .technology-credits dl > div { grid-template-columns: 1fr; gap: 10px; }
+}
